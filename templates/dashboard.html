@@ -1,0 +1,22 @@
+<h1>Hello {{user.last_name}}, {{user.first_name}}.<br>
+Your Username is {{user.username}}, and your Email Address is {{user.email}}.
+</h1>
+<a href="{% url 'logout' %}" type="submit">Logout</a>
+<!--<input type="submit" value="{% url 'logout' %}">-->
+
+{% if messages %}
+  {% for message in messages %}
+    <div id="message" class="container">
+        <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
+            <strong>
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                  ERROR
+                {% else %}
+                  {{ message.tags|title }}
+                {% endif %}
+            </strong>
+            {{ message }}
+        </div>
+    </div>
+  {% endfor %}
+{% endif %}

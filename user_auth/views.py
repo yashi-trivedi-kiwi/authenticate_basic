@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
+
+import constants
 from .forms import RegisterForm, LoginForm
 
 
@@ -20,11 +22,11 @@ def register(request):
         if password == password2:
             # check Username
             if User.objects.filter(username=username).exists():
-                messages.error(request, 'That username is taken')
+                messages.error(request, constants.ERROR['username']['already_exists'])
                 return redirect('register')
             else:
                 if User.objects.filter(email=email).exists():
-                    messages.error(request, 'That email is being used')
+                    messages.error(request, constants.ERROR['email']['already_taken'])
                     return redirect('register')
                 else:
                     # Looks Good
@@ -35,11 +37,11 @@ def register(request):
                     # messages.success(request,'You are now logged in.')
                     # return redirect('index')
                     user.save()
-                    messages.success(request, 'You are now registered and can log in')
+                    messages.success(request, constants.ERROR['register_success']['success'])
                     return redirect('login')
 
         else:
-            messages.error(request, 'Passwords do not match')
+            messages.error(request, constants.ERROR['password']['do_not_match'])
             return redirect('register')
 
     else:
@@ -57,7 +59,7 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            messages.success(request, 'You are now logged in')
+            messages.success(request, constants.ERROR['login_success']['success'])
             return redirect('dashboard')
         else:
             messages.error(request, 'Invalid Credentials')
@@ -72,7 +74,7 @@ def logout(request):
     # if request.method == 'POST':
     auth.logout(request)
     messages.success(request, 'You are now logged out')
-    return redirect('register')
+    return redirect('login')
 
 
 def dashboard(request):

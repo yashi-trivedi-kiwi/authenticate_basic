@@ -51,6 +51,7 @@ def register(request):
 def login(request):
     form = LoginForm()
     context = {'form': form}
+
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']

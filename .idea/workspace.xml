@@ -2,33 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61719291-32dc-4a14-b0c0-5604cedbd445" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/Authenticate.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/authentication_project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Authenticate/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Authenticate/asgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Authenticate/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Authenticate/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Authenticate/wsgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/dashboard.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_auth/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_auth/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_auth/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_auth/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_auth/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_auth/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_auth/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_auth/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_auth/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Authenticate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Authenticate.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authenticate/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Authenticate/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,9 +30,32 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "last_opened_file_path": "C:/Users/yashi/PycharmProjects/Django_Projects/authentication_project/Authenticate",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Authenticate" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Authenticate" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\yashi\PycharmProjects\Django_Projects\authentication_project\Authenticate\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/.." />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$" />
+      <option name="PARAMETERS" value="runserver" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

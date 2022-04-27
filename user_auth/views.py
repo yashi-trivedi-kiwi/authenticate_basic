@@ -7,7 +7,7 @@ from .forms import RegisterForm, LoginForm
 
 
 def register(request):
-    form = RegisterForm()
+    form = RegisterForm(request.POST or None)
     context = {'form': form}
     if request.method == "POST":
         # Get form values
@@ -23,11 +23,14 @@ def register(request):
             # check Username
             if User.objects.filter(username=username).exists():
                 messages.error(request, constants.ERROR['username']['already_exists'])
-                return redirect('register')
+                if User.objects.filter(email=email).exists():
+                    messages.error(request, constants.ERROR['email']['already_taken'])
+                    return render(request, 'register.html', context)
+                return render(request, 'register.html', context)
             else:
                 if User.objects.filter(email=email).exists():
                     messages.error(request, constants.ERROR['email']['already_taken'])
-                    return redirect('register')
+                    return render(request, 'register.html', context)
                 else:
                     # Looks Good
                     user = User.objects.create_user(username=username, password=password,

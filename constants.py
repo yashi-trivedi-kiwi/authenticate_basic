@@ -1,4 +1,7 @@
-ERROR={
+"""
+Constants used in application
+"""
+ERROR = {
     'username':{
         'already_exists':'Username already exists'
     },

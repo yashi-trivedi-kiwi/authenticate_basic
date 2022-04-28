@@ -7,6 +7,13 @@ from .forms import RegisterForm, LoginForm
 
 
 def register(request):
+    """
+    Creating a register form, and getting values
+    Validating all fields with the  django default user methods
+    Creating a user and saving the user
+    Returning and redirecting to functions and templates for register form
+    :param request: wsgi request
+    """
     form = RegisterForm(request.POST or None)
     context = {'form': form}
     if request.method == "POST":
@@ -52,6 +59,14 @@ def register(request):
 
 
 def login(request):
+    """
+    Creating a login function
+    authenticating with django user's authenticate method
+    if user is authenticated , return to login page
+    give message for login success
+    else give message for invalid credentials
+    :params request: wsgi request
+    """
     form = LoginForm()
     context = {'form': form}
 
@@ -73,13 +88,20 @@ def login(request):
 
 
 def logout(request):
-    # form = LogoutForm()
-    # context = {'form': form}
-    # if request.method == 'POST':
+    """
+    Creating a logout function
+    after logout request, redirecting it to login
+    :params request: wsgi request
+    """
     auth.logout(request)
     messages.success(request, 'You are now logged out')
     return redirect('login')
 
 
 def dashboard(request):
+    """
+    Creating a dashboard function
+    after request passed, rendering it to dashboard template
+    :params request: wsgi request
+    """
     return render(request, 'dashboard.html')

@@ -1,0 +1,57 @@
+<html>
+<style>
+    table, th, td {
+  border: 1px solid black;
+}
+</style>
+<div class="row">
+ <div>
+  <h2>Add New Books</h2>
+  <form action="" method="POST">
+   {% csrf_token %}
+   {{ form.as_p }}
+   <input type="submit" class="btn btn-success" value="AddBooks">
+</form>
+ </div>
+ <a href="{% url 'update'%}">View added Books</a>
+</div>
+<div class="col-sm-7 offset-1">
+  <h4 class="text-center alert alert-info">Show Student
+   Information</h4>
+    {% if book %}
+        <table>
+            <thread>
+            <tr>
+            <th scope="col">ID</th>
+            <th scope="col">author_name</th>
+            <th scope="col">title</th>
+            <th scope="col">genre</th>
+            <th scope="col">price</th>
+            <th scope="col">Action</th>
+            </tr>
+            </thread>
+            <tbody>
+            {% for i in book %}
+                <tr>
+                <th scope="row">{{i.id}}</th>
+                <td>{{i.author_name}}</td>
+                <td>{{i.title}}</td>
+                <td>{{i.genre}}</td>
+                <td>{{i.price}}</td>
+                    <td>
+                    <form action="{% url 'delete' %}" method="post" class="d-inline">
+                      {% csrf_token %}
+                      <input type="submit"  class="btn btn-danger" value="Delete">
+                      <input type="submit" href="{% url 'update' %}"  class="btn btn-danger" value="EDIT">
+                    </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+            {% else %}
+                <h4 class="text-center alert alert-info">No Records</h4>
+    {% endif %}
+ </div>
+</div>
+</html>

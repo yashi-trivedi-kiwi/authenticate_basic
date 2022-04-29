@@ -1,8 +1,10 @@
-<h1>Hello {{user.last_name}}, {{user.first_name}}.<br>
-Your Username is {{user.username}}, and your Email Address is {{user.email}}.
-</h1>
-<a href="{% url 'logout' %}" type="submit">Logout</a>
-<!--<input type="submit" value="{% url 'logout' %}">-->
+<h2>Hello <i style="color:blue;">{{user.last_name}}</i>, <i style="color:blue;">{{user.first_name}}</i>.<br>
+Your Username is <i style="color:blue;">{{user.username}}</i>.<br>Your Email Address is <i style="color:blue;">{{user.email}}</i>.
+</h2>
+<ul>
+    <li type ="none"><a href="{% url 'addbooks' %}" type="submit">Books</a><br></li><br>
+    <li type="none"><a href="{% url 'logout' %}" type="submit">Logout</a></li>
+</ul>
 
 {% if messages %}
   {% for message in messages %}

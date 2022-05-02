@@ -1,0 +1,43 @@
+<div class="col-sm-7 offset-1">
+  <h4 class="text-center alert alert-info">Show Books
+   Information</h4>
+
+    {% if book %}
+        <table>
+            <thread>
+            <tr>
+            <th scope="col">ID</th>
+            <th scope="col">author_name</th>
+            <th scope="col">title</th>
+            <th scope="col">genre</th>
+            <th scope="col">price</th>
+            <th scope="col">Action</th>
+            </tr>
+            </thread>
+            <tbody>
+            {% for i in book %}
+                <tr>
+                <th scope="row">{{i.id}}</th>
+                <td>{{i.author_name}}</td>
+                <td>{{i.title}}</td>
+                <td>{{i.genre}}</td>
+                <td>{{i.price}}</td>
+                    <td>
+
+                    <form action="{% url 'delete' i.id %}" method="post" class="d-inline">
+                      {% csrf_token %}
+                        <a href="{% url 'update' i.id %}" class="btn btn-warning btn-sm">Edit</a>
+                      <input type="submit"  class="btn btn-danger" value="Delete">
+                    </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            </table><br>
+    <a href="{% url 'addbooks' %}">Back</a><br><br>
+    <a href="{% url 'login' %}">logout</a>
+    {% else %}
+        <h4 class="text-center alert alert-info">No Records</h4>
+
+        {% endif %}
+</div>

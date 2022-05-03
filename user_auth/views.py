@@ -46,7 +46,7 @@ def register(request):
                     # messages.success(request,'You are now logged in.')
                     # return redirect('index')
                     user.save()
-                    messages.success(request, constants.ERROR['register_success']['success'])
+                    messages.success(request, constants.SUCCESS['register_success']['success'])
                     return redirect('login')
 
         else:
@@ -77,10 +77,10 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            messages.success(request, constants.ERROR['login_success']['success'])
+            messages.success(request, constants.SUCCESS['login_success']['success'])
             return redirect('dashboard')
         else:
-            messages.error(request, 'Invalid Credentials')
+            messages.error(request, constants.ERROR['invalid']['invalid'])
             return redirect('login')
     else:
         return render(request, 'login.html', context)
@@ -93,7 +93,7 @@ def logout(request):
     :params request: wsgi request
     """
     auth.logout(request)
-    messages.success(request, 'You are now logged out')
+    messages.success(request, constants.SUCCESS['logout_success']['success'])
     return redirect('login')
 
 

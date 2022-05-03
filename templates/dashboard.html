@@ -1,24 +1,26 @@
+{% if request.user.is_authenticated %}
 <h2>Hello <i style="color:blue;">{{user.last_name}}</i>, <i style="color:blue;">{{user.first_name}}</i>.<br>
 Your Username is <i style="color:blue;">{{user.username}}</i>.<br>Your Email Address is <i style="color:blue;">{{user.email}}</i>.
 </h2>
-<ul>
-    <li type ="none"><a href="{% url 'addbooks' %}" type="submit">Books</a><br></li><br>
-    <li type="none"><a href="{% url 'logout' %}" type="submit">Logout</a></li>
-</ul>
+    <p type ="none"><a href="{% url 'addbooks' %}" type="submit">Books</a><br></p><br>
+    <p type="none"><a href="{% url 'logout' %}" type="submit">Logout</a></p>
+    {% else %}
+     <p>You are not logged in!</p>
 
-{% if messages %}
-  {% for message in messages %}
-    <div id="message" class="container">
-        <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
-            <strong>
-                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-                  ERROR
-                {% else %}
-                  {{ message.tags|title }}
-                {% endif %}
-            </strong>
-            {{ message }}
+    {% if messages %}
+      {% for message in messages %}
+        <div id="message" class="container">
+            <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
+                <strong>
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                      ERROR
+                    {% else %}
+                      {{ message.tags|title }}
+                    {% endif %}
+                </strong>
+                {{ message }}
+            </div>
         </div>
-    </div>
-  {% endfor %}
+      {% endfor %}
+    {% endif %}
 {% endif %}

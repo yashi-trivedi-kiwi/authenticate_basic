@@ -1,11 +1,8 @@
-{% if request.user.is_authenticated %}
 <h2>Hello <i style="color:blue;">{{user.last_name}}</i>, <i style="color:blue;">{{user.first_name}}</i>.<br>
 Your Username is <i style="color:blue;">{{user.username}}</i>.<br>Your Email Address is <i style="color:blue;">{{user.email}}</i>.
 </h2>
     <p type ="none"><a href="{% url 'addbooks' %}" type="submit">Books</a><br></p><br>
     <p type="none"><a href="{% url 'logout' %}" type="submit">Logout</a></p>
-    {% else %}
-     <p>You are not logged in!</p>
 
     {% if messages %}
       {% for message in messages %}
@@ -23,4 +20,3 @@ Your Username is <i style="color:blue;">{{user.username}}</i>.<br>Your Email Add
         </div>
       {% endfor %}
     {% endif %}
-{% endif %}

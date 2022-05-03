@@ -1,7 +1,10 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+
+import constants
 from crud.forms import AddBooksForm
 from .models import AddBooks
+from django.contrib import messages
 
 
 def addbooks(request):
@@ -17,6 +20,7 @@ def addbooks(request):
             price = request.POST['price']
             register = AddBooks(author_name=author_name, title=title, genre=genre, price=price)
             register.save()
+            messages.success(request, constants.SUCCESS['added_books']['success'])
             form = AddBooksForm()
     else:
         form = AddBooksForm()

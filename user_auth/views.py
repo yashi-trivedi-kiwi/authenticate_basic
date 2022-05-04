@@ -15,46 +15,49 @@ def register(request):
     """
     form = RegisterForm(request.POST or None)
     context = {'form': form}
-    if request.method == "POST":
-        # Get form values
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        password2 = request.POST['password2']
+    if request.user.is_authenticated:
+        return render(request, 'dashboard.html')
+    else:
+        if request.method == "POST":
+            # Get form values
+            first_name = request.POST['first_name']
+            last_name = request.POST['last_name']
+            username = request.POST['username']
+            email = request.POST['email']
+            password = request.POST['password']
+            password2 = request.POST['password2']
 
-        # check if Passwords Match
-        if password == password2:
-            # check Username
-            if User.objects.filter(username=username).exists():
-                messages.error(request, constants.ERROR['username']['already_exists'])
-                if User.objects.filter(email=email).exists():
-                    messages.error(request, constants.ERROR['email']['already_taken'])
-                    return render(request, 'register.html', context)
-                return render(request, 'register.html', context)
-            else:
-                if User.objects.filter(email=email).exists():
-                    messages.error(request, constants.ERROR['email']['already_taken'])
+            # check if Passwords Match
+            if password == password2:
+                # check Username
+                if User.objects.filter(username=username).exists():
+                    messages.error(request, constants.ERROR['username']['already_exists'])
+                    if User.objects.filter(email=email).exists():
+                        messages.error(request, constants.ERROR['email']['already_taken'])
+                        return render(request, 'register.html', context)
                     return render(request, 'register.html', context)
                 else:
-                    # Looks Good
-                    user = User.objects.create_user(username=username, password=password,
-                                                    email=email, first_name=first_name, last_name=last_name)
-                    # Login After Register
-                    # auth.login(request,user)
-                    # messages.success(request,'You are now logged in.')
-                    # return redirect('index')
-                    user.save()
-                    messages.success(request, constants.SUCCESS['register_success']['success'])
-                    return redirect('login')
+                    if User.objects.filter(email=email).exists():
+                        messages.error(request, constants.ERROR['email']['already_taken'])
+                        return render(request, 'register.html', context)
+                    else:
+                        # Looks Good
+                        user = User.objects.create_user(username=username, password=password,
+                                                        email=email, first_name=first_name, last_name=last_name)
+                        # Login After Register
+                        # auth.login(request,user)
+                        # messages.success(request,'You are now logged in.')
+                        # return redirect('index')
+                        user.save()
+                        messages.success(request, constants.SUCCESS['register_success']['success'])
+                        return redirect('login')
+
+            else:
+                messages.error(request, constants.ERROR['password']['do_not_match'])
+                return redirect('register')
 
         else:
-            messages.error(request, constants.ERROR['password']['do_not_match'])
-            return redirect('register')
-
-    else:
-        return render(request, 'register.html', context)
+            return render(request, 'register.html', context)
 
 
 def login(request):
@@ -69,21 +72,24 @@ def login(request):
     form = LoginForm()
     context = {'form': form}
 
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-
-        user = auth.authenticate(username=username, password=password)
-
-        if user is not None:
-            auth.login(request, user)
-            messages.success(request, constants.SUCCESS['login_success']['success'])
-            return redirect('dashboard')
-        else:
-            messages.error(request, constants.ERROR['invalid']['invalid'])
-            return redirect('login')
+    if request.user.is_authenticated:
+        return redirect('dashboard')
     else:
-        return render(request, 'login.html', context)
+        if request.method == 'POST':
+            username = request.POST['username']
+            password = request.POST['password']
+
+            user = auth.authenticate(username=username, password=password)
+            if user is not None:
+                auth.login(request, user)
+                messages.success(request, constants.SUCCESS['login_success']['success'])
+                return redirect('dashboard')
+            else:
+                messages.error(request, constants.ERROR['invalid']['invalid'])
+                return redirect('login')
+
+        else:
+            return render(request, 'login.html', context)
 
 
 def logout(request):
@@ -103,4 +109,8 @@ def dashboard(request):
     after request passed, rendering it to dashboard template
     :params request: wsgi request
     """
-    return render(request, 'dashboard.html')
+    if request.user.is_authenticated:
+        return render(request, 'dashboard.html')
+    else:
+        return render(request, 'login.html')
+

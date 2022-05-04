@@ -1,38 +1,39 @@
-{% if user.is_authenticated %}
-<html>
-<style>
-    table, th, td {
-  border: 1px solid black;
-}
-</style>
-<div class="row">
- <div>
-  <h2>Add New Books</h2>
-  <form action="" method="POST">
-   {% csrf_token %}
-   {{ form.as_p }}
-   <input type="submit" class="btn btn-success" value="AddBooks"><br><br>
-   {% if messages %}
-  {% for message in messages %}
-    <div id="message" class="container">
-        <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
-            <strong>
-                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-                  ERROR
-                {% else %}
-                  {{ message.tags|title }}
-                {% endif %}
-            </strong>
-            {{ message }}
+<!--{% if user.is_authenticated %}-->
+    <html>
+    <style>
+        table, th, td {
+      border: 1px solid black;
+    }
+    </style>
+    <div class="row">
+     <div>
+      <h2>Add New Books</h2>
+      <form action="" method="POST">
+       {% csrf_token %}
+       {{ form.as_p }}
+       <input type="submit" class="btn btn-success" value="AddBooks"><br><br>
+       {% if messages %}
+      {% for message in messages %}
+        <div id="message" class="container">
+            <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
+                <strong>
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                      ERROR
+                    {% else %}
+                      {{ message.tags|title }}
+                    {% endif %}
+                </strong>
+                {{ message }}
+            </div>
         </div>
+      {% endfor %}
+    {% endif %}
+       <a href="{% url 'show'%}">Show Added Books</a>
+    </form>
+     </div>
+     <a href="{% url 'logout'%}">logout</a>
     </div>
-  {% endfor %}
-{% endif %}
-   <a href="{% url 'show'%}">Show Added Books</a>
-</form>
- </div>
- <a href="{% url 'logout'%}">logout</a>
-</div>
-
-</html>
-{% endif %}
+    </html>
+<!--{% else %}-->
+<!--<p>You need to login first!</p>-->
+<!--{% endif %}-->

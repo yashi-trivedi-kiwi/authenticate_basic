@@ -44,10 +44,7 @@ def register(request):
                         # Looks Good
                         user = User.objects.create_user(username=username, password=password,
                                                         email=email, first_name=first_name, last_name=last_name)
-                        # Login After Register
-                        # auth.login(request,user)
-                        # messages.success(request,'You are now logged in.')
-                        # return redirect('index')
+
                         user.save()
                         messages.success(request, constants.SUCCESS['register_success']['success'])
                         return redirect('login')

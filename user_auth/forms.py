@@ -16,6 +16,9 @@ class RegisterForm(forms.ModelForm):
 
         model = User
         fields = ['first_name', 'last_name', 'email', 'username', 'password', 'password2']
+        help_texts = {
+            'username': None,
+        }
 
 
 class LoginForm(forms.ModelForm):
@@ -25,3 +28,7 @@ class LoginForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'password']
+
+        help_texts = {
+            'username': None,
+        }

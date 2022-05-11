@@ -4,7 +4,8 @@ from crud.models import AddBooks
 
 class AddBooksForm(forms.ModelForm):
     """
-    Creating books form with fields(title,author_name,genre,price) from Books model
+    Creating books form with fields(title,author_name,genre,price,date_created,date_modified)
+    from AddBooks model
     """
 
     class Meta:

@@ -1,9 +1,17 @@
-<!--{% if user.is_authenticated %}-->
-    <h2>Hello <i style="color:blue;">{{user.last_name}}</i>, <i style="color:blue;">{{user.first_name}}</i>.<br>
-    Your Username is <i style="color:blue;">{{user.username}}</i>.<br>Your Email Address is <i style="color:blue;">{{user.email}}</i>.
-    </h2>
-        <p type ="none"><a href="{% url 'addbooks' %}" type="submit">Books</a><br></p><br>
-        <p type="none"><a href="{% url 'logout' %}" type="submit">Logout</a></p>
+{% extends 'base.html' %}
+<html>
+{% block content %}
+    <div class="row" style="justify-content:center;">
+        <div class="col-sm-8 offset-2" style="max-width:fit-content;margin-left:0;">
+            <h4 class="alert alert-info" style="text-align:center;">Register new user</h4>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" href="{% url 'register' %}" class="btn btn-info" value="Register">
+</form>
+            <br>
+<p>Already a user?<a href="{% url 'login' %}" style="font-weight:700;">login here</a></p>
 
         {% if messages %}
           {% for message in messages %}
@@ -21,6 +29,7 @@
             </div>
           {% endfor %}
         {% endif %}
-<!--{% else %}-->
-<!--    <p>You are not logged in!</p>-->
-<!--{% endif %}-->
+    </div>
+    </div>
+{% endblock %}
+</html>

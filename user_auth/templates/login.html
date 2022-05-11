@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+<html>
+{% block content %}
+    <div class="row" style="justify-content:center;">
+        <div class="col-sm-8 offset-2" style="max-width:fit-content;margin-left:0;">
+            <h4 class="alert alert-info" style="text-align:center;">Login here</h4>
+
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <br>
+                <input type="submit" href="{% url 'login' %}" value="login" class="btn btn-info"><br>
+            </form>
+
+            {% if messages %}
+              {% for message in messages %}
+                <div id="message" class="container">
+                    <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
+                        <strong>
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                              ERROR
+                            {% else %}
+                              {{ message.tags|title }}
+                            {% endif %}
+                        </strong>
+                        {{ message }}
+                    </div>
+                </div>
+              {% endfor %}
+            {% endif %}
+<br>
+            <div>
+                Not a User?<a href="{% url 'register' %}" type ="submit"> Register Here</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</html>

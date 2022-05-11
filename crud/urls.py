@@ -4,8 +4,8 @@ from django.urls import path, include
 from crud import views
 
 urlpatterns = [
-    path('', views.addbooks, name="addbooks"),
+    path('/addbook', views.addbooks, name="addbooks"),
     path('update/<int:id>/', views.update, name="update"),
-    path('delete/<int:id>/', views.delete, name="delete"),
-    path('show', views.show, name="show")
+    path('deletebook/<int:id>/', views.deletebook, name="deletebook"),
+    path('', views.show, name="show")
 ]

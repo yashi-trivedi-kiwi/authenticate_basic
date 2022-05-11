@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+{% block content %}
+<div class="col-sm-7 offset-1" style="max-width:100%;align-content:center;">
+  <h4 class="text-center alert alert-info" style="width:80%;align-content:center;">Books
+   Information</h4>
+    <br><br>
+    <div>
+        <ul style="list-style-type:none;display: flex;justify-content: center;margin-right: -500px;color:black;">
+            <li style="padding-right:20px;font-weight:700;"><a href="{% url 'addbooks' %}">Add Book</a></li>
+        </ul>
+    </div>
+    {% if book %}
+        <table style="width:inherit;">
+            <thread>
+            <tr>
+            <th scope="col">ID</th>
+            <th scope="col">author_name</th>
+            <th scope="col">title</th>
+            <th scope="col">genre</th>
+            <th scope="col">price</th>
+            <th scope="col">Action</th>
+            </tr>
+            </thread>
+            <tbody>
+            {% for book in book %}
+                <tr>
+                <th scope="row">{{book.id}}</th>
+                <td>{{book.author_name}}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.genre}}</td>
+                <td>{{book.price}}</td>
+                    <td>
+
+                    <form action="{% url 'deletebook' book.id %}" method="post" class="d-inline">
+                      {% csrf_token %}
+                        <a href="{% url 'update' book.id %}" class="btn btn-warning btn-sm" type="button">Edit</a>
+                      <input type="submit"  class="btn btn-danger" value="Delete">
+                    </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            </table><br>
+
+    {% else %}
+        <h4 style="width:80%;text-align:center;">No Records</h4>
+    {% endif %}
+</div>
+{% endblock %}

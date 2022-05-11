@@ -13,7 +13,10 @@ ERROR = {
     },
     'invalid': {
         'invalid': 'invalid credentials'
-    }
+    },
+    'not_logged_in': {
+            'need_login': 'You need to login first'
+        }
 }
 
 SUCCESS = {

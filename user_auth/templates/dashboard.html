@@ -1,0 +1,32 @@
+   {% extends 'base.html' %}
+   {% block content %}
+   <div class="row" style="justify-content:center;text-align:center;">
+      <div class="col-sm-8 offset-2" style="max-width:fit-content;margin-left:0;margin-top:100px;">
+
+        <h2 style="align-content:center;">Hello <i style="color:blue;">{{user.last_name}}</i>, <i style="color:blue;">{{user.first_name}}</i>.<br>
+        Your Username is <i style="color:blue;">{{user.username}}</i>.<br>Your Email Address is <i style="color:blue;">{{user.email}}</i>.
+        </h2>
+        <ul style="display:flex;justify-content:center;font-weight:700;">
+            <li type ="none" style="padding:5px;"><a href="{% url 'addbooks' %}" class="btn btn-info" style="background-color:darkslategray;">Books</a><br></li>
+            <li type ="none" style="padding:5px;"><a href="{% url 'frontview' %}" class="btn btn-info" style="background-color:chocolate;">Posts</a><br></li>
+
+        </ul>
+            {% if messages %}
+              {% for message in messages %}
+                <div id="message" class="container">
+                    <div>
+                        <strong>
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                              ERROR
+                            {% else %}
+                              {{ message.tags|title }}
+                            {% endif %}
+                        </strong>
+                        {{ message }}
+                    </div>
+                </div>
+              {% endfor %}
+            {% endif %}
+      </div>
+   </div>
+   {% endblock %}
